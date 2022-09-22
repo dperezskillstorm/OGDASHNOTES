@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
-const LaborStatsSchema = new Schema({
+const SafetySchema = new Schema({
   
 
     fiscalWeek:{
@@ -10,43 +10,46 @@ const LaborStatsSchema = new Schema({
         unique:false
     },
 
-    culinary:{
+    publicLiability:{
         type: Number,
         required: false,
         unique:false
     },
 
-    service:{
+    workersComp:{
         type: Number,
         required: false,
         unique:false
     },
 
-    togo:{
+    smartSenseCompletion:{
         type: Number,
         required: false,
         unique:false
     },
 
-    host:{
+    compliancePercent:{
         type: Number,
         required: false,
         unique:false
     },
 
-    bartender:{
+    tqScore:{
         type: Number,
         required: false,
         unique:false
     },
 
+    
     category:{
         type: String,
         required: false,
         unique:false
     },
 
+
+
 })
 
-const LaborStats = mongoose.model("LaborStat",LaborStatsSchema,"LaborStats")
-module.exports = LaborStats
+const Staffing = mongoose.model("Safety",SafetySchema,"Safety")
+module.exports = Staffing

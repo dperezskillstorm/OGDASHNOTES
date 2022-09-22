@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
-
+require('dotenv').config()
 const app = express();
 
 let corsOptions = {
@@ -41,8 +41,11 @@ app.post('/', function(req, res) {
 
 //This bind router ojeect to url/ 
 app.use('/GSS', require("./routes/Stats.route"))
-app.use('/Labor', require("./routes/Labor.route"))
-app.use('/Notes',require("./routes/Notes.route "))
+app.use('/LaborHours', require("./routes/LaborHours.route"))
+app.use('/Notes',require("./routes/Notes.route"))
+app.use('/Staffing',require("./routes/Staffing.route"))
+app.use('/Safety',require("./routes/Safety.route"))
+app.use('/Harvest',require("./routes/Harvest.route"))
 
 
 app.all("*",(res,req)=> {
@@ -52,10 +55,10 @@ app.all("*",(res,req)=> {
 
 
 
-const MONGO_URI ="mongodb+srv://root:root@cluster0.tgfjx.mongodb.net/?retryWrites=true&w=majority"
 
 //Connect to Mongo
-mongoose.connect(MONGO_URI)
+mongoose.connect(process.env.MONGO_URI,
+{useNewUrlParser:true})
     .then( () => {
         console.log('Successfully connected to MongoDB');
     })

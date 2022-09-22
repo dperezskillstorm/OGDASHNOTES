@@ -1,10 +1,10 @@
 
 const router = require('express').Router();
 
-const { findAllRecords, createRecord, findAllRecordById, DeleteRecordById, updateRecord} = require('../controllers/LaborStats.controller');
-const { updateMany, findByIdAndDelete } = require('../models/LaborStats.model');
+const { findAllRecords, createRecord, findAllRecordById, DeleteRecordById, updateRecord} = require('../controllers/Harvest.controller');
+const { updateMany, findByIdAndDelete } = require('../models/Harvest.model');
 
-//Created GSSStats Records
+//Created Labor Hours Records
 router.post('/', async (req, res)=>{
     try {
         const recordId = await createRecord(req.body);
@@ -24,7 +24,7 @@ router.get('/' , async (req,res) => {
 })
 
 //Find Record by Id in url path
-// http://localhost:8080/stats/632216b74e67471bc30888d8
+// http://localhost:8080/LaborHours/632216b74e67471bc30888d8
 router.get('/:id', async (req,res)=>{
     try{
         const record = await findAllRecordById(req.params.id);
@@ -37,7 +37,7 @@ router.get('/:id', async (req,res)=>{
 
 
 //Find Record by Id and delete
-// http://localhost:8080/stats/632216b74e67471bc30888d8
+// http://localhost:8080/LaborHours/632216b74e67471bc30888d8
 router.delete('/:id', async (req,res)=>{
     try{
         const record = await DeleteRecordById(req.params.id);

@@ -13,10 +13,10 @@ const GSSStats = require("../models/GSSStats.model")
 //     "value": 883,
 //     "rank": 929
 // }
-const createRecord = async ({id,fiscalWeek,overAll,taste,attentiveness,onTime,accuracy,value,rank,category}) => {
+const createRecord = async ({_id,fiscalWeek,overAll,taste,attentiveness,onTime,accuracy,value,rank,category}) => {
     try{
         const gssStats = new GSSStats({
-            id,
+            _id,
             fiscalWeek,
             overAll,
             taste,

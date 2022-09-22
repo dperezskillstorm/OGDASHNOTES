@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
-const NotesSchema = new Schema({
+const StaffingSchema = new Schema({
   
 
     fiscalWeek:{
@@ -9,33 +9,32 @@ const NotesSchema = new Schema({
         required: false,
         unique:false
     },
-//category, is it a note, todo, task, etc
-    category:{
-        type: String,
-        required: false,
-        unique:false
-    },
 
     date:{
+        type:String,
+        required: false,
+        unique: false
+    },
+
+    position:{
         type: String,
         required: false,
         unique:false
     },
 
-   
-    status:{
+    value:{
+        type: Number,
+        required: false,
+        unique:false
+    },
+
+    firstName:{
         type: String,
         required: false,
         unique:false
     },
 
-    department:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-    description:{
+    lastName:{
         type: String,
         required: false,
         unique:false
@@ -47,20 +46,13 @@ const NotesSchema = new Schema({
         unique:false
     },
 
-    miscField1:{
+    miscField:{
         type: String,
         required: false,
         unique:false
     },
 
-    miscField2:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-   
 })
 
-const Notes = mongoose.model("Notes",NotesSchema,"Notes")
-module.exports = Notes
+const Staffing = mongoose.model("Staffing",StaffingSchema,"Staffing")
+module.exports = Staffing

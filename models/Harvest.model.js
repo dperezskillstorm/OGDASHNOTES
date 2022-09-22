@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
-const NotesSchema = new Schema({
+const HarvestSchema = new Schema({
   
 
     fiscalWeek:{
@@ -9,9 +9,33 @@ const NotesSchema = new Schema({
         required: false,
         unique:false
     },
-//category, is it a note, todo, task, etc
-    category:{
+
+    AVst:{
         type: String,
+        required: false,
+        unique:false
+    },
+
+    topItem1:{
+        type: String,
+        required: false,
+        unique:false
+    },
+
+    topItem2:{
+        type: String,
+        required: false,
+        unique:false
+    },
+
+    topItem3:{
+        type: String,
+        required: false,
+        unique:false
+    },
+
+    harvestedInput:{
+        type: Number,
         required: false,
         unique:false
     },
@@ -22,45 +46,14 @@ const NotesSchema = new Schema({
         unique:false
     },
 
-   
-    status:{
+
+    category:{
         type: String,
         required: false,
         unique:false
     },
 
-    department:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-    description:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-    notes:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-    miscField1:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-    miscField2:{
-        type: String,
-        required: false,
-        unique:false
-    },
-
-   
 })
 
-const Notes = mongoose.model("Notes",NotesSchema,"Notes")
-module.exports = Notes
+const Harvest = mongoose.model("Harvest",HarvestSchema,"Harvest")
+module.exports = Harvest
