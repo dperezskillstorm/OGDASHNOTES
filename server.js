@@ -2,8 +2,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
+const winston = require("winston")
 require('dotenv').config()
+
 const app = express();
+
 
 let corsOptions = {
     origin: "http://localhost:3000"
@@ -26,6 +29,25 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+
+
+  //create a logger
+  const logger = winston.createLogger({
+  level: 'info',
+  transports: [
+    new winston.transports.Console({
+        format:winston.format.combine(
+            winston.format.colorize({all:true})
+        )
+    }),
+    new winston.transports.File({filename: 'error.log',level:'error'})
+  ],
+  exceptionHandlers: [
+    new winston.transports.File({filename: 'exceptions.log'})
+  ]
+
+});
+
 
 //simple route
 app.get("/", (req,res)=>{
@@ -55,15 +77,14 @@ app.all("*",(res,req)=> {
 
 
 
-
 //Connect to Mongo
 mongoose.connect(process.env.MONGO_URI,
 {useNewUrlParser:true})
     .then( () => {
-        console.log('Successfully connected to MongoDB');
+        logger.log("info","connected to MongoDB");
     })
     .catch(err => {
-        console.error(err);
+        logger.error(err.message);
         // Options
         // Connect to fallback database
         // OR
@@ -74,7 +95,7 @@ mongoose.connect(process.env.MONGO_URI,
 //set port, listen for reuiest
 
 app.listen(PORT, ()=>{
-    console.log(`server is running on port ${PORT}.`);
+    logger.warn( `server is running on port ${PORT}.`);
 });
 
 
