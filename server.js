@@ -8,13 +8,9 @@ require('dotenv').config()
 const app = express();
 
 
-let corsOptions = {
-    origin: "https://client-8hbf.vercel.app/"
-};
-
 const PORT = process.env.PORT ||8080;
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse request of content type appliaction/json
 app.use(bodyParser.json());
