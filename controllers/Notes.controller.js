@@ -10,10 +10,11 @@ const Notes = require("../models/Notes.model")
 //     "description": 444,
 //     "notes": 33,
 // }
-const createRecord = async ({id,category,date,fiscalWeek,status,department,description,notes,miscField1,miscField2}) => {
+const createRecord = async ({id,noteType,category,date,fiscalWeek,status,department,description,notes,miscField1,miscField2}) => {
     try{
         const notesObj = new Notes({
             id,
+            noteType,
             category,
             date,
             fiscalWeek,
@@ -88,9 +89,9 @@ const DeleteRecordById = async _id =>{
 // Needs the ID inside body and in the url
 // doesnt require all fields
 //Update Record
-const updateRecord = async({_id,category,date,fiscalWeek,status,department,description,notes,miscField1,miscField2})=>{
+const updateRecord = async({_id,noteType,category,date,fiscalWeek,status,department,description,notes,miscField1,miscField2})=>{
     try {
-        const updates={ category,fiscalWeek,date,status,department,description,notes,miscField1,miscField2};
+        const updates={ category,noteType,fiscalWeek,date,status,department,description,notes,miscField1,miscField2};
         const updatedRecord = await Notes.findByIdAndUpdate({_id}, updates,{new:true});
         return updatedRecord
 

@@ -16,6 +16,12 @@ const NotesSchema = new Schema({
         unique:false
     },
 
+    noteType:{
+        type: String,
+        required: false,
+        unique:false
+    },
+
     date:{
         type: String,
         required: false,
