@@ -2,10 +2,10 @@ const Finance = require("../models/Finance.model")
 
 
 
-const createRecord = async ({_id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes}) => {
+const createRecord = async ({_id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes, day90Term}) => {
     try{
         const record = new Finance({
-            _id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes
+            _id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes,day90Term
         });
 
         await record.save() //saves states into database
@@ -58,9 +58,9 @@ const DeleteRecordById = async _id =>{
     }
 }
 
-const updateRecord = async({_id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes})=>{
+const updateRecord = async({_id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes,day90Term})=>{
     try {
-        const updates={_id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes};
+        const updates={_id,fiscalWeek,sales,salesPer,guestCount,guestCountLY,growthPE,addOns,driverCheck,tabcCheck,dardenDimes,day90Term};
         const updatedRecord = await Finance.findByIdAndUpdate({_id}, updates,{new:true});
         return updatedRecord
 

@@ -64,6 +64,12 @@ const FinanceSchema = new Schema({
         unique:false
     },
 
+     day90Term:{
+        type: Number,
+        required: false,
+        unique:false
+    },
+
 })
 
 const Finance = mongoose.model("Finance",FinanceSchema,"Finances")
