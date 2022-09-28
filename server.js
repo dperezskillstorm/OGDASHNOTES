@@ -72,6 +72,7 @@ app.use('/Notes',require("./routes/Notes.route"))
 app.use('/Staffing',require("./routes/Staffing.route"))
 app.use('/Safety',require("./routes/Safety.route"))
 app.use('/Harvest',require("./routes/Harvest.route"))
+app.use('/Finance',require("./routes/Finance.route"))
 
 
 app.all("*",(res,req)=> {
