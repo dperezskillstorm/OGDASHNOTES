@@ -47,7 +47,7 @@ const FinanceSchema = new Schema({
     },
 
     driverCheck:{
-        type: Number,
+        type: String,
         required: false,
         unique:false
     },
