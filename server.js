@@ -18,6 +18,8 @@ app.use(bodyParser.json());
 //parse request of content type application/xwww form urlencoded
 app.use(bodyParser.urlencoded({extended:true}));
 
+
+
 //Different Cors Method
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -64,6 +66,11 @@ app.post('/', function(req, res) {
     res.send(req.body);
     }); 
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123'
+  });
+});
 
 //This bind router ojeect to url/ 
 app.use('/GSS', require("./routes/Stats.route"))
