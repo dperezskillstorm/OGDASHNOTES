@@ -4,13 +4,18 @@ const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const winston = require("winston")
 require('dotenv').config()
+const userRoutes = require("./routes/User.route")
+const authRoutes = require("./routes/Auth.route")
 
 const app = express();
+
+//middleware
+app.use(express.json())
+app.use(cors());
 
 
 const PORT = process.env.PORT ||8080;
 
-app.use(cors());
 
 // parse request of content type appliaction/json
 app.use(bodyParser.json());
@@ -66,11 +71,7 @@ app.post('/', function(req, res) {
     res.send(req.body);
     }); 
 
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'test123'
-  });
-});
+
 
 //This bind router ojeect to url/ 
 app.use('/GSS', require("./routes/Stats.route"))
@@ -80,6 +81,8 @@ app.use('/Staffing',require("./routes/Staffing.route"))
 app.use('/Safety',require("./routes/Safety.route"))
 app.use('/Harvest',require("./routes/Harvest.route"))
 app.use('/Finance',require("./routes/Finance.route"))
+app.use('/users',userRoutes)
+app.use('/auth',authRoutes)
 
 
 app.all("*",(res,req)=> {
@@ -91,12 +94,14 @@ app.all("*",(res,req)=> {
 
 //Connect to Mongo
 mongoose.connect(process.env.MONGO_URI,
-{useNewUrlParser:true})
+{useNewUrlParser:true,
+ useUnifiedTopology:true,})
     .then( () => {
         logger.log("info","connected to MongoDB");
     })
     .catch(err => {
         logger.error(err.message);
+        logger.log("error","could not connect to db")
         // Options
         // Connect to fallback database
         // OR
